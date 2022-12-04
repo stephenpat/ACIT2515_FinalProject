@@ -2,6 +2,7 @@ import pygame
 from os import path
 
 
+# class for the bullet
 class Bullet(pygame.sprite.Sprite):
     def __init__(self, x, y):
         BLACK = (0, 0, 0)
@@ -16,6 +17,7 @@ class Bullet(pygame.sprite.Sprite):
         self.rect.centerx = x
         self.speedy = -10
 
+    # function to update the bullet
     def update(self):
         self.rect.y += self.speedy
         # kill if it moves off the top of the screen
