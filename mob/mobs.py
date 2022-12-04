@@ -2,6 +2,8 @@ import pygame
 import random
 from os import path
 
+# class for the mob
+
 
 class Mob(pygame.sprite.Sprite):
     def __init__(self):
@@ -31,6 +33,7 @@ class Mob(pygame.sprite.Sprite):
         self.rot_speed = random.randrange(-8, 8)
         self.last_update = pygame.time.get_ticks()
 
+    # rotate the mob
     def rotate(self):
         now = pygame.time.get_ticks()
         if now - self.last_update > 50:
@@ -42,6 +45,7 @@ class Mob(pygame.sprite.Sprite):
             self.rect = self.image.get_rect()
             self.rect.center = old_center
 
+    # update the mob
     def update(self):
         self.rotate()
         WIDTH = 480
