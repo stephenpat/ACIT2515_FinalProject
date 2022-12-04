@@ -7,21 +7,17 @@ from explosion.explosions import Explosion
 from bullet.bullets import Bullet
 from mob.mobs import Mob
 
+# initialize path of images
 img_dir = path.join(path.dirname(__file__), 'img')
 snd_dir = path.join(path.dirname(__file__), 'snd')
 
+# initialize colours
 WIDTH = 480
 HEIGHT = 600
 FPS = 60
 POWERUP_TIME = 5000
-
-# define colors
-WHITE = (255, 255, 255)
 BLACK = (0, 0, 0)
-RED = (255, 0, 0)
-GREEN = (0, 255, 0)
-BLUE = (0, 0, 255)
-YELLOW = (255, 255, 0)
+
 
 # initialize pygame and create window
 pygame.init()
@@ -29,28 +25,34 @@ pygame.mixer.init()
 screen = pygame.display.set_mode((WIDTH, HEIGHT))
 pygame.display.set_caption("Rocket Shooter")
 clock = pygame.time.Clock()
-
 font_name = pygame.font.match_font('arial')
+
+# function to draw text
 
 
 def draw_text(surf, text, size, x, y):
-    # function to draw text
+    WHITE = (255, 255, 255)
     font = pygame.font.Font(font_name, size)
     text_surface = font.render(text, True, WHITE)
     text_rect = text_surface.get_rect()
     text_rect.midtop = (x, y)
     surf.blit(text_surface, text_rect)
 
+# create a new mob function
+
 
 def newmob():
-    # create a new mob
+
     m = Mob()
     all_sprites.add(m)
     mobs.add(m)
 
+# function to draw shield bar
+
 
 def draw_shield_bar(surf, x, y, pct):
-    # function to draw shield bar
+    GREEN = (0, 255, 0)
+    WHITE = (255, 255, 255)
     if pct < 0:
         pct = 0
     BAR_LENGTH = 100
@@ -61,6 +63,8 @@ def draw_shield_bar(surf, x, y, pct):
     pygame.draw.rect(surf, GREEN, fill_rect)
     pygame.draw.rect(surf, WHITE, outline_rect, 2)
 
+# function to draw lives
+
 
 def draw_lives(surf, x, y, lives, img):
     for i in range(lives):
@@ -68,6 +72,8 @@ def draw_lives(surf, x, y, lives, img):
         img_rect.x = x + 30 * i
         img_rect.y = y
         surf.blit(img, img_rect)
+
+# function to show screen
 
 
 def show_go_screen():
@@ -85,6 +91,8 @@ def show_go_screen():
                 pygame.quit()
             if event.type == pygame.KEYUP:
                 waiting = False
+
+# class for player
 
 
 class Player(pygame.sprite.Sprite):
@@ -112,8 +120,9 @@ class Player(pygame.sprite.Sprite):
         self.power = 1
         self.power_time = pygame.time.get_ticks()
 
+    # timeout for powerups
     def update(self):
-        # timeout for powerups
+
         WIDTH = 480
         HEIGHT = 600
         POWERUP_TIME = 5000
