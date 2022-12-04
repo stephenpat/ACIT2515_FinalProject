@@ -4,6 +4,7 @@ from os import path
 img_dir = path.join('img')
 
 
+# class from the powerups
 class Pow(pygame.sprite.Sprite):
     def __init__(self, center):
         pygame.sprite.Sprite.__init__(self)
@@ -20,6 +21,7 @@ class Pow(pygame.sprite.Sprite):
         self.rect.center = center
         self.speedy = 5
 
+    # function to update the powerups
     def update(self):
         self.rect.y += self.speedy
         # kill if it moves off the top of the screen
